@@ -4,8 +4,8 @@ M347
 V1
 
 <details>
-<summary>Geschichte Von Docker</summary>
-<h3>Geschichte Von Docker S.1</h3>
+<summary>Für was sind Docker-Container nützlich? S.1</summary>
+<h3>Für was sind Docker-Container nützlich?</h3>
 Docker-Container sind nützlich, weil sie eine isolierte, konsistente Umgebung bieten, die es Entwicklern und Systemadministratoren ermöglicht, Anwendungen unabhängig von der zugrunde liegenden Infrastruktur auszuführen. Hier sind einige Hauptvorteile und Einsatzmöglichkeiten von Docker-Containern:
 
 - Portabilität
@@ -14,8 +14,8 @@ Docker-Container sind nützlich, weil sie eine isolierte, konsistente Umgebung b
 - Ressourcen-Effizienz
 </details>
 <details>
-<summary>Was ist Dev-Ops S.2</summary>
-<h3>Was ist Dev-Ops</h3>
+<summary>Was ist Dev-Ops? S.2</summary>
+<h3>Was ist Dev-Ops?</h3>
 DevOps ist eine Abkürzung für "Development" (Entwicklung) und "Operations" (Betrieb). Es handelt sich um eine kulturelle und praktische Herangehensweise an Softwareentwicklung und IT-Betrieb, die darauf abzielt, die Zusammenarbeit zwischen Entwicklern (die neue Funktionen entwickeln) und Operations-Teams (die für die Bereitstellung und den reibungslosen Betrieb der Software verantwortlich sind) zu verbessern.
 </details>
 <details>
