@@ -6,14 +6,17 @@ V1
 <details>
 <summary>Geschichte Von Docker</summary>
 <h3>Geschichte Von Docker S.1</h3>
+Docker-Container sind nützlich, weil sie eine isolierte, konsistente Umgebung bieten, die es Entwicklern und Systemadministratoren ermöglicht, Anwendungen unabhängig von der zugrunde liegenden Infrastruktur auszuführen. Hier sind einige Hauptvorteile und Einsatzmöglichkeiten von Docker-Containern:
 
-Docker wurde 2013 von Solomon Hykes ins Leben gerufen. Es revolutionierte die Software-Entwicklung, indem es Containerisierung für Anwendungen vereinfachte. Docker ermöglicht es, Anwendungen und ihre Abhängigkeiten in Containern zu verpacken, die überall konsistent ausgeführt werden können.
+- Portabilität
+- Konsistenz zwischen Entwicklungs-, Test- und Produktionsumgebungen
+- Skalierbarkeit und Flexibilität
+- Ressourcen-Effizienz
 </details>
 <details>
-<summary>Cloud Computing Stack S.2</summary>
-<h3>Cloud Computing Stack:</h3>
-
-Ein Cloud-Computing-Stack umfasst verschiedene Dienste und Technologien, die zusammenarbeiten, um Cloud-basierte Lösungen bereitzustellen. Typischerweise beinhaltet dies Infrastruktur (wie virtuelle Maschinen), Plattformdienste (wie Datenbanken und Middleware) und Softwareanwendungen (wie SaaS-Angebote).
+<summary>Was ist Dev-Ops S.2</summary>
+<h3>Was ist Dev-Ops</h3>
+DevOps ist eine Abkürzung für "Development" (Entwicklung) und "Operations" (Betrieb). Es handelt sich um eine kulturelle und praktische Herangehensweise an Softwareentwicklung und IT-Betrieb, die darauf abzielt, die Zusammenarbeit zwischen Entwicklern (die neue Funktionen entwickeln) und Operations-Teams (die für die Bereitstellung und den reibungslosen Betrieb der Software verantwortlich sind) zu verbessern.
 </details>
 <details>
 <summary>Unterschied Virtualisierung vs. Containerisierung S.3</summary>
