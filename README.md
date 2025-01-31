@@ -1,18 +1,22 @@
 # Nevio's Docker Dokumentation #
+INF2023I
+M347
+V1
+
 <details>
 <summary>Geschichte Von Docker</summary>
-<h3>Geschichte Von Docker</h3>
+<h3>Geschichte Von Docker S.1</h3>
 
 Docker wurde 2013 von Solomon Hykes ins Leben gerufen. Es revolutionierte die Software-Entwicklung, indem es Containerisierung für Anwendungen vereinfachte. Docker ermöglicht es, Anwendungen und ihre Abhängigkeiten in Containern zu verpacken, die überall konsistent ausgeführt werden können.
 </details>
 <details>
-<summary>Cloud Computing Stack</summary>
+<summary>Cloud Computing Stack S.2</summary>
 <h3>Cloud Computing Stack:</h3>
 
 Ein Cloud-Computing-Stack umfasst verschiedene Dienste und Technologien, die zusammenarbeiten, um Cloud-basierte Lösungen bereitzustellen. Typischerweise beinhaltet dies Infrastruktur (wie virtuelle Maschinen), Plattformdienste (wie Datenbanken und Middleware) und Softwareanwendungen (wie SaaS-Angebote).
 </details>
 <details>
-<summary>Unterschied Virtualisierung vs. Containerisierung</summary>
+<summary>Unterschied Virtualisierung vs. Containerisierung S.3</summary>
 <h3>Unterschied Virtualisierung vs. Containerisierung</h3>
 
 - Virtualisierung: Hier werden ganze virtuelle Maschinen (VMs) erstellt, die eine komplette Betriebssysteminstanz und Anwendungen beinhalten. Jede VM nutzt eine eigene Betriebssysteminstanz und Ressourcen.
@@ -25,7 +29,7 @@ Containerisierung, insbesondere durch Docker, hat die Bereitstellung von Anwendu
 >[!NOTE]
 >Die oberen Texte wurden von ChatGPT geschrieben ich habe recherchiert ob alles stimmt und da ich fand das er es kurz und knackig erklärt habe ich seine Erklärung verwendet.
 <details>
-<summary>Docker Login</summary>
+<summary>Docker Login S.4</summary>
 <h3>Docker Login</h3>
 Ich musste mich nicht registrieren da ich bereits ein Konto hatte also konnte ich mich 
 einfach via Google einloggen.
