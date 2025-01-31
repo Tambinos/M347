@@ -11,5 +11,5 @@ Ein Cloud-Computing-Stack umfasst verschiedene Dienste und Technologien, die zus
 
 Containerisierung, insbesondere durch Docker, hat die Bereitstellung von Anwendungen vereinfacht und die Effizienz in der Cloud-Computing-Welt erheblich verbessert.
 
-[!NOTE]
-Text wurde von ChatGPT geschrieben ich habe recherchiert ob alles stimmt und da ich fand das er es kurz und knackig erklärt habe ich seine Erklärung verwendet.
+>[!NOTE]
+>Text wurde von ChatGPT geschrieben ich habe recherchiert ob alles stimmt und da ich fand das er es kurz und knackig erklärt habe ich seine Erklärung verwendet.
