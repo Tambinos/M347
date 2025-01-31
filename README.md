@@ -13,3 +13,7 @@ Containerisierung, insbesondere durch Docker, hat die Bereitstellung von Anwendu
 
 >[!NOTE]
 >Text wurde von ChatGPT geschrieben ich habe recherchiert ob alles stimmt und da ich fand das er es kurz und knackig erklärt habe ich seine Erklärung verwendet.
+
+### Docker Login ###
+Ich musste mich nicht registrieren da ich bereits ein Konto hatte also konnte ich mich einfach via Google einloggen.
+![Alt text](docker-login-page.png "Login Screen")
