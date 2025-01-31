@@ -23,7 +23,7 @@ Containerisierung, insbesondere durch Docker, hat die Bereitstellung von Anwendu
 </details>
 
 >[!NOTE]
->Text wurde von ChatGPT geschrieben ich habe recherchiert ob alles stimmt und da ich fand das er es kurz und knackig erklärt habe ich seine Erklärung verwendet.
+>Die oberen Texte wurden von ChatGPT geschrieben ich habe recherchiert ob alles stimmt und da ich fand das er es kurz und knackig erklärt habe ich seine Erklärung verwendet.
 <details>
 <summary>Docker Login</summary>
 <h3>Docker Login</h3>
