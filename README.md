@@ -2,6 +2,7 @@
 INF2023I
 M347
 V1
+![Alt text](image.png "Docker logo (Cute Whales)")
 
 <details>
 <summary>Für was sind Docker-Container nützlich? S.1</summary>
