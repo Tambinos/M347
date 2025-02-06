@@ -79,3 +79,7 @@ Dockerfile im angegebenen Verzeichnis.
   
 - `docker logs <container-id>` Zeigt die Logs eines Containers an.
 </details>
+<details>
+  <summary>OnlyOffice Installation S.7</summary>
+  ![Alt text](image.png "OnlyOffice)
+</details>
