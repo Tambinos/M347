@@ -2,7 +2,7 @@
 INF2023I
 M347
 V1
-![Alt text](docker-image.png "Docker logo (Cute Whales)")
+![Alt text](https://pbs.twimg.com/media/DcNP--nWAAEbnmn.jpg "Docker logo (Cute Whales)")
 
 <details>
 <summary>Für was sind Docker-Container nützlich? S.1</summary>
