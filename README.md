@@ -44,3 +44,12 @@ Dannach war ich bereits auf meinem Konto eingelogged.
 
 ![Alt text](docker-logged-in.png "Logged In Screen")
 </details>
+<details>
+<summary>Unterschied Container und Image S.5</summary>
+<h3>Unterschied Container und Image</h3>
+Docker-Image: Ein Image ist wie eine Vorlage, die verwendet wird, um Container zu erstellen. Die Anweisungen zum Erstellen eines Docker-Containers enthält. Ein Image enthält alles, was notwendig ist, um eine Anwendung auszuführen – wie Code, Laufzeitumgebung, Bibliotheken, Umgebungsvariablen und Konfigurationsdateien.
+
+Docker-Container: Ein Container ist eine laufende Instanz eines Images. Er erstellt das benötigte Environment um eine Anwendung und ihre Abhängigkeiten zu erfüllen dies so resourcensparend wie möglich. Container, die aus demselben Image erstellt werden, sind hinsichtlich ihrer Konfiguration und ihres Verhaltens identisch.
+
+Kurz gesagt: Ein Image ist die Vorlage für den Container
+</details>
