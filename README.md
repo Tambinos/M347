@@ -81,5 +81,5 @@ Dockerfile im angegebenen Verzeichnis.
 </details>
 <details>
   <summary>OnlyOffice Installation S.7</summary>
-  ![Alt text](image.png "OnlyOffice")
+  ![Alt text](docker-image.png "OnlyOffice")
 </details>
