@@ -54,3 +54,28 @@ Dannach war ich bereits auf meinem Konto eingelogged.
 
 Kurz gesagt: Ein Image ist die Vorlage für den Container
 </details>
+<details>
+<summary>Wichtigste Befehle für Docker S.6</summary>
+<h3>Wichtigste Befehle für Docker</h3>
+  
+- `docker --version` Zeigt die aktuelle Version von Docker an.
+
+- `docker pull <image-name>` Lädt ein Docker-Image aus einem Repository (z. B. Docker Hub) herunter.
+
+- `docker build -t <image-name> <path>` Erstellt ein Docker-Image aus einem
+Dockerfile im angegebenen Verzeichnis.
+
+- `docker run <options> <image-name>` Startet einen neuen Container basierend auf einem Image. Du kannst auch Optionen wie Portweiterleitungen, Umgebungsvariablen oder Volumes hinzufügen.
+
+- `docker ps` Listet alle laufenden Container auf.
+
+- `docker ps -a` Listet alle Container auf, einschließlich der gestoppten.
+
+- `docker stop <container-id>` Stoppt einen laufenden Container.
+
+- `docker rm <container-id>` Löscht einen gestoppten Container.
+
+- `docker rmi <image-name>` Löscht ein Docker-Image.
+  
+- `docker logs <container-id>` Zeigt die Logs eines Containers an.
+</details>
