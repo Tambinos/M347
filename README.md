@@ -87,6 +87,7 @@ Dockerfile im angegebenen Verzeichnis.
   <summary>To-Do App Images builden und runnen S.8</summary>
   <h3>To-Do App Images builden und runnen</h3>
   Ich habe die Images gebaut und gerunnt mit diesen Befehlen
+  <br></br>
   V1
   
   ```bash
@@ -103,6 +104,8 @@ Dockerfile im angegebenen Verzeichnis.
   docker run --net=todoapp_network --name=redis-slave -d redis-slave:v1
   docker run --net=todoapp_network --name=frontend -d -p 3000:3000 todo-app:v1
   ```
+  <br></br>
+  V2  
   ```bash
   cd to-do-appv1/
   cd redis-slave/
