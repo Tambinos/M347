@@ -86,7 +86,8 @@ Dockerfile im angegebenen Verzeichnis.
 <details>
   <summary>To-Do App Images builden und runnen S.8</summary>
   <h3>To-Do App Images builden und runnen</h3>
-  Ich habe die Images gebaut und gerunnt mit diesen Befehlen (v1 und v2 gleicher prozess einfach in der anderen Directory und die tags zu v2 ändern)
+  Ich habe die Images gebaut und gerunnt mit diesen Befehlen
+  V1
   
   ```bash
   cd redis-slave/
@@ -101,6 +102,23 @@ Dockerfile im angegebenen Verzeichnis.
   docker run --net=todoapp_network --name=redis-master -d redis-master:v1
   docker run --net=todoapp_network --name=redis-slave -d redis-slave:v1
   docker run --net=todoapp_network --name=frontend -d -p 3000:3000 todo-app:v1
+  ```
+  ```bash
+  cd to-do-appv1/
+  cd redis-slave/
+  docker build -t redis-slave:v2 .
+  cd ..
+  cd redis-master/
+  docker build -t redis-master:v2 .
+  cd ..
+  cd to-do-appv2/
+  ls
+  cd web-frontendv2/
+  docker build -t todo-app:v2 .
+  docker network create todoapp_network
+  docker run --net=todoapp_network --name=redis-master -d redis-master:v2
+  docker run --net=todoapp_network --name=redis-slave -d redis-slave:v2
+  docker run --net=todoapp_network --name=frontend -d -p 3000:3000 todo-app:v2
   ```
   Mit diesem Befehlen ist die app schon gelaufen
   ![Alt text](todo-app.png "To-do app")
