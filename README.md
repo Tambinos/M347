@@ -142,4 +142,7 @@ Dockerfile im angegebenen Verzeichnis.
   ```
   Mit diesem Befehlen war das ganze auch schon gepusht
   ![Alt text](pushed-images.png "To-do app")
+  ![Alt text](to-do-docker-image.png "To-do docker image")
+  ![Alt text](redis-master-docker-image.png "redis master docker image")
+  ![Alt text](redis-slave-docker-image.png "redos master docker image")
 </details>
