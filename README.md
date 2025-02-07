@@ -124,7 +124,12 @@ Dockerfile im angegebenen Verzeichnis.
   docker run --net=todoapp_network --name=frontend -d -p 3000:3000 todo-app:v2
   ```
   Mit diesem Befehlen ist die app schon gelaufen
+  <br></br>
+  V1
   ![Alt text](todo-app.png "To-do app")
+  <br></br>
+  V2 
+  ![Alt text](todo-app-v2.png "To-do app v2")
 </details>
 <details>
   <summary>To-Do App Images pushen S.9</summary>
