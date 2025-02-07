@@ -81,6 +81,26 @@ Dockerfile im angegebenen Verzeichnis.
 </details>
 <details>
   <summary>OnlyOffice Installation S.7</summary>
+   ![Alt text](only-office.png "OnlyOffice")
+</details>
+<details>
+  <summary>To-Do App Images builden und runnen S.8</summary>
+  <h3>To-Do App Images builden und runnen</h3>
+  Ich habe die Images gebaut und gerunnt mit diesen Befehlen
   
-  ![Alt text](image.png "OnlyOffice")
+  ```bash
+  cd redis-slave/
+  docker build -t redis-slave:v1 .
+  cd ..
+  cd redis-master/
+  docker build -t redis-master:v1 .
+  cd ..
+  docker build -t todo-app:v1 .
+  docker network create todoapp_network
+  docker run --net=todoapp_network --name=redis-master -d redis-master:v1
+  docker run --net=todoapp_network --name=redis-slave -d redis-slave:v1
+  docker run --net=todoapp_network --name=frontend -d -p 3000:3000 todo-app:v1
+  ```
+  Mit diesem Befehlen ist die app schon gelaufen
+  ![Alt text](todo-app.png "To-do app")
 </details>
