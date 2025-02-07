@@ -86,7 +86,7 @@ Dockerfile im angegebenen Verzeichnis.
 <details>
   <summary>To-Do App Images builden und runnen S.8</summary>
   <h3>To-Do App Images builden und runnen</h3>
-  Ich habe die Images gebaut und gerunnt mit diesen Befehlen
+  Ich habe die Images gebaut und gerunnt mit diesen Befehlen (v1 und v2 gleicher prozess einfach in der anderen Directory und die tags zu v2 ändern)
   
   ```bash
   cd redis-slave/
@@ -95,6 +95,7 @@ Dockerfile im angegebenen Verzeichnis.
   cd redis-master/
   docker build -t redis-master:v1 .
   cd ..
+  cd web-frontend/
   docker build -t todo-app:v1 .
   docker network create todoapp_network
   docker run --net=todoapp_network --name=redis-master -d redis-master:v1
@@ -103,4 +104,21 @@ Dockerfile im angegebenen Verzeichnis.
   ```
   Mit diesem Befehlen ist die app schon gelaufen
   ![Alt text](todo-app.png "To-do app")
+</details>
+<details>
+  <summary>To-Do App Images pushen S.9</summary>
+  <h3>To-Do App Images pushen</h3>
+  Mit diesen Befehlen habe ich die BIlder in mein registry gepushed (v1 und v2 gleicher prozess einfach in der anderen Directory und die tags zu v2 ändern)
+  
+  ```bash
+  docker login ghcr.io
+  docker image tag redis-master:v1 ghcr.io/tambinos/m347/redis-master:v1
+  docker image tag redis-slave:v1 ghcr.io/tambinos/m347/redis-slave:v1
+  docker image tag todo-app:v1 ghcr.io/tambinos/m347/todo-app:v1
+  docker image push ghcr.io/tambinos/m347/todo-app:v1
+  docker image push ghcr.io/tambinos/m347/redis-master:v1
+  docker image push ghcr.io/tambinos/m347/redis-slave:v1
+  ```
+  Mit diesem Befehlen war das ganze auch schon gepusht
+  ![Alt text](pushed-images.png "To-do app")
 </details>
