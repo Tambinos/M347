@@ -154,6 +154,13 @@ Dockerfile im angegebenen Verzeichnis.
 <details>
   <summary>Was ist Docker Compose S.10</summary>
   <h3>Was ist Docker Compose</h3>
+  Docker Compose bietet mehrere Vorteile um den Run Prozess von Images zu vereinfachen indem sie folgende Vorteile bieten
+
+  -  Mehrere Container in der richtigen Reihenfolge starten
+  -  Networking normalerweise sollten alle Container im gleichen Network operieren was konfiguration ersparrt
+
+  Dadurch können wir mehrere Images sehr einfach handlen.
+
 </details>
 <details>
   <summary>Docker compose für Todo-app-v2 S.11</summary>
@@ -167,39 +174,29 @@ Dockerfile im angegebenen Verzeichnis.
   In dieses kommt nun unser docker-compose	
   
   ```
-  version: '3'
-    services:
-      redis-master:
-        image: ghcr.io/tambinos/m347/redis-master:v2
-        container_name: redis-master
-        networks:
-          - redis-network
-        ports:
-          - "6379:6379"
+version: '3'
+  services:
+    redis-master:
+      image: ghcr.io/tambinos/m347/redis-master:v2
+      container_name: redis-master
+      ports:
+        - "6379:6379"
 
-      redis-slave:
-        image: ghcr.io/tambinos/m347/redis-slave:v2
-        container_name: redis-slave
-        networks:
-          - redis-network
-        depends_on:
-          - redis-master
-        ports:
-          - "6380:6379"
+    redis-slave:
+      image: ghcr.io/tambinos/m347/redis-slave:v2
+      container_name: redis-slave
+      depends_on:
+        - redis-master
+      ports:
+        - "6380:6379"
 
-      todo-app:
-        image: ghcr.io/tambinos/m347/todo-app:v2
-        container_name: todo-app
-        networks:
-          - redis-network
-        depends_on:
-          - redis-master
-        ports:
-          - "3000:3000"
-
-    networks:
-      redis-network:
-        driver: bridge
+    todo-app:
+      image: ghcr.io/tambinos/m347/todo-app:v2
+      container_name: todo-app
+      depends_on:
+        - redis-master
+      ports:
+        - "3000:3000"
   ```
 
   Dieses können wir jetzt mit ausführen
