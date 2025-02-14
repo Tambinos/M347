@@ -1,0 +1,107 @@
+@page "/store"
+@using Microsoft.AspNetCore.Components;
+@using System;
+@using System.Net.Http;
+@using System.Net.Http.Json;
+@using System.Threading.Tasks;
+@inject IHttpClientFactory ClientFactory
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Claims
+@using System.Collections.Generic;
+@using System.Text.Json;
+
+@namespace BlazorClient.Pages.Store
+@inject IDialogService DialogService
+<h1> <MudIcon Icon="@Icons.Material.Filled.AddBusiness" Size="Size.Large"/> Store</h1>
+
+@if (_items == null)
+{
+        <p>Loading...</p>
+}
+
+else
+{
+    <h3><MudIcon Icon="@Icons.Material.Filled.MonetizationOn" />My Gil: @_items.UserGil  </h3>
+
+    <MudTable Items=" _items.Items" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+        <HeaderContent>
+            <MudTh>Id</MudTh>
+            <MudTh>Name</MudTh>
+            <MudTh>Description</MudTh>
+            <MudTh>Quantity</MudTh>
+             <MudTh>Action</MudTh>
+           
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="id">@context.Id</MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+            <MudTd DataLabel="Price">@context.OwnedQuantity</MudTd>    
+               
+             <MudTd DataLabel="Action"><MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.AttachMoney" Color="Color.Primary" OnClick="@((e) => Purchase(context))">Purchase</MudButton></MudTd>
+
+        </RowTemplate>
+    </MudTable>
+}
+
+
+@code {
+    private StoreDto _items;
+     private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+
+
+
+   async Task Purchase(StoreItemDto data )
+    {    
+    
+       var parameters = new DialogParameters { ["data"]=data };     
+
+
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+        //Console.WriteLine(data.Name);
+
+      
+
+        var dialog = await  DialogService.ShowAsync<BlazorClient.Pages.Store.PurchaseDialog>("Purchase", parameters, closeOnEscapeKey);
+        var result = await dialog.Result;
+                 
+         await getTabele();
+            StateHasChanged();
+       
+          
+
+    }
+
+
+     
+    protected override async Task OnInitializedAsync()
+    {
+       await getTabele();
+    }
+
+
+    private async Task getTabele()
+    {
+        try
+        {
+            var client = ClientFactory.CreateClient("frontend2");
+            var authState = await AuthenticationStateProvider
+            .GetAuthenticationStateAsync();
+            var user = authState.User;          
+           
+          _items  = await client.GetFromJsonAsync<StoreDto>("http://host.docker.internal:5006/store");
+           //k var itemsObject = JsonSerializer.Deserialize<StoreDto>(_items);
+              StateHasChanged();
+            
+                   
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+
+   
+}

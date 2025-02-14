@@ -1,0 +1,107 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazorClient
+build_property.RootNamespace = BlazorClient
+build_property.ProjectDir = C:\Temp\microservices_gibb\microservices-1\Play.FrontendV2\src\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Temp\microservices_gibb\microservices-1\Play.FrontendV2\src
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Authentication.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Catalog/AddDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0YWxvZ1xBZGREaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Catalog/Catalog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0YWxvZ1xDYXRhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Catalog/DeleteDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0YWxvZ1xEZWxldGVEaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Catalog/EditDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0YWxvZ1xFZGl0RGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Catalog/GrantDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0YWxvZ1xHcmFudERpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Inventory.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50b3J5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Store/PurchaseDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcUHVyY2hhc2VEaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Store/Store.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcU3RvcmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Users/DeleteUserDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcRGVsZXRlVXNlckRpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Users/EditUserDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcRWRpdFVzZXJEaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Users/Inventory.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcSW52ZW50b3J5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Pages/Users/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Shared/LoginDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Shared/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-lor2elsqal
+
+[C:/Temp/microservices_gibb/microservices-1/Play.FrontendV2/src/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9woexif8f0

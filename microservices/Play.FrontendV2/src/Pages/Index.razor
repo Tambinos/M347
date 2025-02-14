@@ -1,0 +1,158 @@
+﻿@page "/"
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject NavigationManager Navigation
+@using Newtonsoft.Json.Linq
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+<!--um eine seite zu schützen   (affenschwanz)(attribute [Authorize(Roles = "Player")] -->
+
+<PageTitle>Index</PageTitle>
+
+<!--
+<AuthorizeView Roles="Admin">
+    <Authorized >
+     
+     Nur Admin
+      
+    </Authorized>
+   
+</AuthorizeView>
+<AuthorizeView Roles="Player">
+    <Authorized >
+     
+     Nur Player
+      
+    </Authorized>
+   
+</AuthorizeView>  -->
+
+
+
+<h1> Play Economy</h1>
+
+Welcome to the Play Economy website, a cloud native virtual economy system. To
+get started, yout can:
+
+<MudList Clickable="true">
+  <MudListItem
+    Text="Visit the Store "
+    Icon="@Icons.Material.Filled.AddBusiness"
+    href="/store"
+  />
+  <MudDivider />
+  <MudListItem
+    Text="Check your Inventory"
+    Icon="@Icons.Material.Filled.Inventory"
+    href="/inventory"
+  />
+  <MudDivider />
+
+<AuthorizeView Roles="Admin">
+    <Authorized >
+     
+   <MudListItem
+    Text="Manage the Catalog"
+    href="/catalog"
+    Icon="@Icons.Material.Filled.MenuBook"
+  />
+  <MudDivider />
+  <MudListItem
+    Text="Manage registered Users"
+    href="/users"
+    Icon="@Icons.Material.Filled.Person"
+  />
+  <MudDivider />
+      
+    </Authorized>
+   
+</AuthorizeView>
+</MudList>
+
+<AuthorizeView Roles="Admin">
+    <Authorized >
+     
+
+Visit the Store Check your Inventory Manage the Catalog You can also
+
+<MudList Clickable="true">
+  <MudListItem
+    Text="Manage the message queues "
+    Icon="@Icons.Material.Filled.Send"
+    href="http://localhost:15672/"
+  />
+  <MudDivider />
+  <MudListItem
+    Text="Catalog service"
+    Icon="@Icons.Material.Filled.MenuBook"
+    href="http://host.docker.internal:5000/swagger/index.html"
+  />
+  <MudDivider />
+  <MudListItem
+    Text="Inventory service"
+    Icon="@Icons.Material.Filled.Inventory"
+    href="http://host.docker.internal:5004/swagger/index.html"
+  />
+  <MudDivider />
+  <MudListItem
+    Text="Identity service"
+    Icon="@Icons.Material.Filled.Person"
+    href="http://host.docker.internal:5002/swagger/index.html"
+  />
+  <MudDivider />
+  <MudListItem
+    Text="Trading service"
+    Icon="@Icons.Material.Filled.AddBusiness"
+    href="http://host.docker.internal:5006/swagger/index.html"   
+  />
+  <MudDivider />
+</MudList>
+   
+      
+    </Authorized>
+   
+</AuthorizeView>
+
+
+  
+
+
+
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+      var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;   
+           
+          
+          
+          
+
+
+             
+        @foreach(var item in  user.Claims)
+        {
+          Console.WriteLine(item);
+          
+        }
+
+        if (user.IsInRole("Player"))
+          {
+          
+            Console.WriteLine("in Rolle Admin");
+          }
+          else
+          { 
+            Console.WriteLine("nicht in Rolle Admin");
+
+          }
+           
+    }
+
+
+}

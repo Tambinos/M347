@@ -1,0 +1,16 @@
+﻿
+<MudNavMenu>
+        <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink> 
+     
+        <MudNavLink Href="inventory" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Inventory">My Inventory</MudNavLink>
+        <MudNavLink Href="store" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AddBusiness">Store</MudNavLink>
+
+<AuthorizeView Roles="Admin">
+    <Authorized >
+     <MudNavLink Href="users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Person">Users</MudNavLink>
+     <MudNavLink Href="catalog" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.MenuBook">Catalog</MudNavLink>
+      
+    </Authorized>
+</AuthorizeView>
+
+</MudNavMenu>

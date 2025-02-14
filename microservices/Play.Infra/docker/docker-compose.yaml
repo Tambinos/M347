@@ -1,0 +1,175 @@
+
+version: "3.8"
+
+services: 
+  mongo:
+    image: mongo
+    container_name: mongo    
+    ports:
+      - 27017:27017
+    volumes: 
+      - mongodbdata:/data/db
+
+#-------------------------------------------
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=sml12345
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8081"
+#-------------------------------------------
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq   
+    ports: 
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    hostname: rabbitmq
+
+#-------------------------------------------
+  seq:
+    image: datalust/seq
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5341
+      - 8085:80
+    volumes:
+      - seqdata:/data
+#-------------------------------------------  
+  jaeger:
+    image: jaegertracing/all-in-one
+    container_name: jaeger
+    ports:
+      - 5778:5778
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 14250:14250
+      - 14268:14268
+      - 16686:16686
+#-------------------------------------------
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus/otel.yml:/etc/prometheus/prometheus.yml
+      - prometheusdata:/prometheus
+#-------------------------------------------
+  grafana:
+    build: 
+      context: ./grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+     - '4000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana 
+
+#-------------------------------------------
+  
+  catalog:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.catalog:1.0
+    container_name: catalog
+    hostname: catalog
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - SeqSettings__Host=seq
+     - JaegerSettings__Host=jaeger
+     - ASPNETCORE_URLS=http://+:5000     
+    ports:
+      - 5000:5000
+      
+#-------------------------------------------
+
+
+  
+  identity:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.identity:1.0
+    container_name: identity
+    hostname: identity
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - SeqSettings__Host=seq
+     - JaegerSettings__Host=jaeger     
+     - IdentitySettings__AdminUserPassword=Pass@word1     
+     - ASPNETCORE_URLS=http://+:5002
+    ports:
+      - 5002:5002
+     
+#-------------------------------------------
+      
+  trading:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.trading:1.0
+    container_name: trading
+    hostname: trading
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - SeqSettings__Host=seq     
+     - JaegerSettings__Host=jaeger
+     - ASPNETCORE_URLS=http://+:5006
+    ports:
+      - 5006:5006  
+   
+    
+#-------------------------------------------
+
+  
+  inventory:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.inventory:1.0
+    container_name: inventory
+    hostname: inventory
+
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - JaegerSettings__Host=jaeger
+     - SeqSettings__Host=seq    
+     - ASPNETCORE_URLS=http://+:5004
+    ports:
+      - 5004:5004
+      
+   
+#-------------------------------------------
+
+  
+  frontend:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.frontend:1.0
+    container_name: frontend
+    hostname: frontend 
+    ports:
+      - 3000:3000
+#-------------------------------------------   
+  
+  frontendv2:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.frontendv2:1.0
+    container_name: frontendv2
+    hostname: frontend 
+    ports:
+      - 5008:80
+   
+#-------------------------------------------
+
+
+volumes: 
+  mongodbdata:
+  rabbitmqdata:
+  seqdata:
+  prometheusdata:
+  grafana-storage:

@@ -1,0 +1,107 @@
+@page "/users"
+@inject NavigationManager _nav
+
+@inject IDialogService DialogService
+
+@inject HttpClient httpClient
+
+<h3> <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Large"/> Users</h3>
+
+@if (users == null)
+{
+    <p>Loading...</p>
+}
+else if (users.Count == 0)
+{
+    <p>No users found.</p>
+}
+else
+{
+<MudTable Items="@users" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Gil</MudTh>
+        <MudTh>Inventory</MudTh>
+        <MudTh>Action</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="id">@context.Id</MudTd>
+        <MudTd DataLabel="Email">@context.Email</MudTd>
+        <MudTd DataLabel="Gil">@context.Gil</MudTd>
+        <MudTd DataLabel="Inventory"><MudButton Href= Variant="Variant.Filled"  StartIcon="@Icons.Material.Filled.Inventory" Color="Color.Primary" @onclick="@(()=>_nav.NavigateTo($"/inventory/{context.Id}"))">Show</MudButton></MudTd>
+        <MudTd DataLabel="Action">
+              <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit" @onclick="() => EditAsync(context.Email, context.Id,context.Gil)">Edit</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Delete"  @onclick="() => DeleteUser(context.Email, context.Id)">Delete</MudButton>
+                
+                </MudTd>
+    </RowTemplate>
+</MudTable>
+
+
+}
+
+@code {
+    private List<User> users; 
+        
+    protected override async Task OnInitializedAsync()
+    {
+        users = await httpClient.GetFromJsonAsync<List<User>>("http://host.docker.internal:5002/users");
+      
+
+      
+    }
+
+
+     private async Task DeleteUser(string Email, Guid Id )
+     {
+
+         var parameters = new DialogParameters { ["id"]=Id , ["email"]=Email};     
+
+
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };      
+
+           var dialog = await DialogService.ShowAsync<DeleteUserDialog>("Delete", parameters, closeOnEscapeKey);
+            var result = await dialog.Result;        
+
+             if (!result.Canceled)
+                 {            
+                    
+                    users = await httpClient.GetFromJsonAsync<List<User>>("http://host.docker.internal:5002/users");
+                    StateHasChanged();        
+        
+                }
+     }
+
+
+
+     
+
+
+
+
+    private async Task  EditAsync(string Email,Guid Id,int Gil)
+    { 
+        var parameters = new  DialogParameters<EditUserDialog>();
+        parameters.Add(x => x.ContentText, "");
+        parameters.Add(x => x.ButtonText, "Save");
+        parameters.Add(x => x.Email, Email);
+        parameters.Add(x => x.id, Id);
+        parameters.Add(x => x.Gil, Gil);
+        parameters.Add(x => x.Color, Color.Info);
+
+
+
+
+        var dialog = await DialogService.ShowAsync<EditUserDialog>("Edit User", parameters);
+        var result = await dialog.Result;
+         if (!result.Canceled)
+        {
+             users = await httpClient.GetFromJsonAsync<List<User>>("http://host.docker.internal:5002/users");
+            StateHasChanged();
+        }
+        
+
+    }
+
+} 

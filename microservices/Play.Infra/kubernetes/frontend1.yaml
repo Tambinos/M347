@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend1-deployment
+  namespace: play
+spec:
+  selector:
+    matchLabels:
+      app: frontend1
+  template:
+    metadata:
+      labels:
+        app: frontend1        
+    spec:
+      serviceAccountName: frontend1-serviceaccount
+      containers:
+        - name: frontend1
+          image: git-registry.gibb.ch/thomas.staub/microservices/play.frontend:1.0               
+          resources:            
+          ports:
+            - containerPort: 3000
+          
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend1-service
+  namespace: play
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend1
+  ports:
+    - port: 3000
+      targetPort: 3000 
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: frontend1-serviceaccount
+  namespace: play

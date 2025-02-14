@@ -1,0 +1,58 @@
+@namespace BlazorClient.Pages.Catalog
+@using Microsoft.AspNetCore.Components;
+@using System;
+@using System.Net.Http;
+@using System.Net.Http.Json;
+@using System.Threading.Tasks;
+@inject IHttpClientFactory ClientFactory
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+
+@inject ISnackbar Snackbar
+<MudDialog>
+  <DialogContent>
+    
+    <MudTextField T="string" Label="Name" @bind-Value=data.name></MudTextField>
+     <MudTextField T="string" Label="Description" @bind-Value=data.description ></MudTextField>
+      <MudTextField T="decimal" Label="Price" @bind-Value=data.price></MudTextField>
+   
+  </DialogContent>
+  <DialogActions>
+    <MudButton OnClick="Cancel">Cancel</MudButton>
+    <MudButton Color="Color.Primary" OnClick="Submit">Add</MudButton>
+  </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+     [Parameter] public CreateItemDto data { get; set; } =new CreateItemDto();
+
+    
+  private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
+     async Task  Submit()
+    {
+        //In a real world scenario this bool would probably be a service to delete the item from api/database
+
+  
+
+ try
+        {
+            var client = ClientFactory.CreateClient("frontend2");
+
+         
+          
+              var response = await client.PostAsJsonAsync<CreateItemDto>("http://host.docker.internal:5000/items",data);       
+                             
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+           // exception.Redirect();
+        }
+    
+        Snackbar.Add("Submit", Severity.Success);       
+        MudDialog.Close();
+        
+    }
+}

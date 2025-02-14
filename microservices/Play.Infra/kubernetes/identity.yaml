@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity-deployment
+  namespace: play
+spec:
+  selector:
+    matchLabels:
+      app: identity
+  template:
+    metadata:
+      labels:
+        app: identity        
+    spec:
+      serviceAccountName: identity-serviceaccount
+      containers:
+        - name: trading
+          image: git-registry.gibb.ch/thomas.staub/microservices/play.identity:1.0
+          env:
+            - name: MongoDbSettings__Host
+              value: mongo
+            - name: RabbitMQSettings__Host
+              value: rabbitmq
+            - name: IdentitySettings__AdminUserPassword
+              value: Pass@word1
+            - name: SeqSettings__Host
+              value: seq            
+            - name: AllowedOrigins
+              value: http://host.docker.internal  
+
+
+                           
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "150m"
+          ports:
+            - containerPort: 80
+          
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+  namespace: play
+spec:
+  type: LoadBalancer
+  selector:
+    app: identity
+  ports:
+    - port: 5002
+      targetPort: 80 
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: identity-serviceaccount
+  namespace: play
+
+---

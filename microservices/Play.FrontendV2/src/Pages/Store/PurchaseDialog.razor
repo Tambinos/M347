@@ -1,0 +1,85 @@
+@namespace BlazorClient.Pages.Store
+@inject ISnackbar Snackbar
+@inject IHttpClientFactory ClientFactory
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Threading.Tasks;
+
+<MudDialog>
+  <DialogContent>
+    
+    <MudTextField T="string" Label="Name"   Value="@data.Name" ReadOnly="true"></MudTextField>
+    <MudNumericField
+    Value="@data.Price"
+      ReadOnly="true"
+      Label="Price:"
+      Variant="Variant.Text"
+      Min="0"
+     
+    />
+    <MudNumericField    
+      @bind-Value=quantity
+      Label="Quantity:"
+      Variant="Variant.Text"
+      Min="0"
+      
+    />
+  </DialogContent>
+  <DialogActions>
+    <MudButton OnClick="Cancel">Cancel</MudButton>
+    <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+  </DialogActions>
+</MudDialog>
+
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+ [Parameter] public StoreItemDto data { get; set; } 
+
+public int quantity = 1;
+  SubmitPurchase pur = new SubmitPurchase();    
+  
+  public async Task Cancel()
+    {
+        MudDialog.Cancel();
+    }
+    public async Task Submit()
+    {
+        //In a real world scenario this bool would probably be a service to delete the item from api/database
+       
+
+
+      try
+        {
+            var client = ClientFactory.CreateClient("frontend2");
+                  
+           
+            pur.itemId = data.Id;
+            pur.quantity = quantity;
+            pur.idempotencyId  = Guid.NewGuid(); 
+            
+                  
+                   var response =await client.PostAsJsonAsync<SubmitPurchase>($"http://host.docker.internal:5006/purchase/", pur);       
+                             
+                             
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+           // exception.Redirect();
+        }         
+         
+        Snackbar.Add("Submit", Severity.Success);       
+        MudDialog.Close();
+       
+        
+    }
+
+ public class SubmitPurchase
+    {
+        public Guid itemId  { get; set; }   
+        public int quantity  { get; set; }
+        public Guid  idempotencyId  { get; set; }
+    };
+    
+}
+

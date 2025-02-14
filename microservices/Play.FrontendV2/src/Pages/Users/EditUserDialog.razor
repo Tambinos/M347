@@ -1,0 +1,77 @@
+
+
+@using MudBlazor;
+@inject HttpClient httpClient
+
+<MudDialog>
+    <DialogContent>
+        <MudText>@ContentText</MudText>         
+       <!--  <MudTextField @bind-Value="@FirstName" Label="First Name" /> -->
+         <!--  <MudTextField @bind-Value="@LastName" Label="Last Name" />  -->
+        <MudTextField @bind-Value="@Email" Label="Email" />
+        <MudTextField @bind-Value="@Gil" Label="Gil" />
+        <!--   <MudTextField @bind-Value="@Phone" Label="Phone Nummer" />  -->       
+     
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">"Cancel"</MudButton>
+        <MudButton Color="@Color" Variant="Variant.Filled" OnClick="Submit" StartIcon="@Icons.Material.TwoTone.Save">@ButtonText</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+   
+    [Parameter] public int Gil { get; set; }
+     [Parameter] public Guid id{ get; set; }
+    [Parameter] public string Email { get; set; }    
+    [Parameter] public Color Color { get; set; }
+    [Parameter] public string ContentText { get; set; }
+    [Parameter] public string ButtonText { get; set; }
+
+  
+
+    public async Task Submit() 
+    {
+    
+      
+        
+        UpdateUserDto data = new UpdateUserDto();
+        data.email = Email;
+        data.Gil=Gil;
+
+        
+        
+
+        var response = await httpClient.PutAsJsonAsync<UpdateUserDto>($"http://host.docker.internal:5002/users/{id}",data);       
+           
+             //Snackbar.Add("Successful Createt", Severity.Success);   
+            MudDialog.Close(DialogResult.Ok(true));  
+             //await InvokeAsync(StateHasChanged);  
+             
+        }
+       
+            
+          
+    
+    void Cancel() => MudDialog.Cancel();
+
+
+    
+   
+
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+    
+
+
+    public class UpdateUserDto
+{
+   
+    public string email { get; set; }
+    public double Gil { get; set; }
+   
+  
+};
+}
+ 

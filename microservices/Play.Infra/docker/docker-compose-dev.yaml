@@ -1,0 +1,135 @@
+
+version: "3.8"
+
+services: 
+  mongo:
+    image: mongo
+    container_name: mongo
+    
+    ports:
+      - 27017:27017
+    volumes: 
+      - mongodbdata:/data/db
+
+
+  mongo-express:
+        image: mongo-express
+        environment:
+            - ME_CONFIG_MONGODB_SERVER=mongo
+            - ME_CONFIG_MONGODB_PORT=27017
+            - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+            
+        depends_on:
+            - mongo
+        ports:
+          - "8080:8081"    
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq   
+    ports: 
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    hostname: rabbitmq
+
+  
+  
+  catalog:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.catalog:1.0
+    container_name: catalog
+    hostname: catalog
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+     - ASPNETCORE_Kestrel__Certificates__Default__Password=my-password-for-the-Cert+Start.is!not!so.complex!
+     - ASPNETCORE_URLS=https://+:5001;http://+:5000
+     
+    ports:
+      - 5000:5000
+      - 5001:5001
+    volumes:
+      - ./.aspnet/https:/https:ro  
+
+
+  
+  identity:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.identity:1.0
+    container_name: identity
+    hostname: identity
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - IdentitySettings__AdminUserPassword=Pass@word1
+     - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+     - ASPNETCORE_Kestrel__Certificates__Default__Password=my-password-for-the-Cert+Start.is!not!so.complex!
+     - ASPNETCORE_URLS=https://+:5003;http://+:5002
+    ports:
+      - 5002:5002
+      - 5003:5003
+    volumes:
+      - ./.aspnet/https:/https:ro
+      
+  trading:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.trading:1.0
+    container_name: trading
+    hostname: trading
+
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+     - ASPNETCORE_Kestrel__Certificates__Default__Password=my-password-for-the-Cert+Start.is!not!so.complex!
+     - ASPNETCORE_URLS=https://+:5007;http://+:5006
+
+    ports:
+      - 5006:5006  
+      - 5007:5007 
+    volumes:
+      - ./.aspnet/https:/https:ro  
+
+
+  
+  inventory:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.inventory:1.0
+    container_name: inventory
+    hostname: inventory
+
+    environment:     
+     - MongoDbSettings__Host=mongo 
+     - RabbitMQSettings__Host=rabbitmq
+     - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+     - ASPNETCORE_Kestrel__Certificates__Default__Password=my-password-for-the-Cert+Start.is!not!so.complex!
+     - ASPNETCORE_URLS=https://+:5005;http://+:5004
+    ports:
+      - 5004:5004
+      - 5005:5005
+    volumes:
+      - ./.aspnet/https:/https:ro  
+
+
+  
+  frontend:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.frontend:1.0
+    container_name: frontend
+    hostname: frontend 
+    ports:
+      - 3000:3000
+   
+  
+  frontendv2:
+    image: git-registry.gibb.ch/thomas.staub/microservices/play.frontendv2:1.0
+    container_name: frontendv2
+    hostname: frontend 
+    ports:
+      - 5008:80
+   
+
+
+
+volumes: 
+  mongodbdata:
+  rabbitmqdata:
+  

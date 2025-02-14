@@ -1,0 +1,70 @@
+@namespace BlazorClient.Pages.Catalog
+@using Microsoft.AspNetCore.Components;
+@using System;
+@using System.Net.Http;
+@using System.Net.Http.Json;
+@using System.Threading.Tasks;
+@inject IHttpClientFactory ClientFactory
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+
+@inject ISnackbar Snackbar
+<MudDialog>
+  <DialogContent>
+    
+    <MudTextField T="string" Label="Name" @bind-Value=data.name ReadOnly="true"></MudTextField>
+     <MudTextField T="string" Label="Description" @bind-Value=data.description ReadOnly="true"></MudTextField>
+      <MudTextField T="decimal" Label="Price" @bind-Value=data.price ReadOnly="true"></MudTextField>
+         <MudTextField  Label="User ID" @bind-Value=uid ></MudTextField>
+          <MudNumericField    
+     
+      Label="Quantity:"
+      Variant="Variant.Text"
+      Min="0"
+      @bind-Value=quantity
+      
+    />
+   
+  </DialogContent>
+  <DialogActions>
+    <MudButton OnClick="Cancel">Cancel</MudButton>
+    <MudButton Color="Color.Primary" OnClick="Submit">Add</MudButton>
+  </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+     [Parameter] public ItemDto data { get; set; }
+      [Parameter] public int quantity { get; set; } =0;
+         [Parameter] public Guid uid { get; set; } 
+
+    //4320700c-bb06-4a3c-996a-bca89dbac9ea
+  private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
+     async Task  Submit()
+    {
+       
+         try
+        {
+            var client = ClientFactory.CreateClient("frontend2");
+            GrantItemsDto _data= new GrantItemsDto();
+            _data.userId = uid;
+            _data.CatalogItemId = data.id;
+            _data.quantity = quantity;     
+          
+                  
+                   var response =await client.PostAsJsonAsync<GrantItemsDto>($"http://host.docker.internal:5004/items/", _data);       
+                             
+                             
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+           // exception.Redirect();
+        }
+    
+        Snackbar.Add("Submit", Severity.Success);       
+        MudDialog.Close();
+        
+    }
+}

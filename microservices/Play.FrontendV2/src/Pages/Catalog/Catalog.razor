@@ -1,0 +1,152 @@
+
+@page "/catalog"
+@using Microsoft.AspNetCore.Components;
+@using System;
+@using System.Net.Http;
+@using System.Net.Http.Json;
+@using System.Threading.Tasks;
+@inject IHttpClientFactory ClientFactory
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+@namespace BlazorClient.Pages.Catalog
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+<h1> <MudIcon Icon="@Icons.Material.Filled.MenuBook" Size="Size.Large"/> Catalog</h1>
+
+@if (_items == null)
+{
+            <p>Loading...</p>
+}
+
+else
+{
+             <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@((e) => Add())">Add</MudButton>
+
+        <MudTable Items="@_items" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+            <HeaderContent>
+                <MudTh>Id</MudTh>
+                <MudTh>Name</MudTh>
+                <MudTh>Description</MudTh>
+                <MudTh>Price</MudTh>
+                <MudTh>Created Date</MudTh>
+                <MudTh>Actions</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="id">@context.id</MudTd>
+                <MudTd DataLabel="Name">@context.name</MudTd>
+                <MudTd DataLabel="Description">@context.description</MudTd>
+                <MudTd DataLabel="Price">@context.price</MudTd>
+                <MudTd DataLabel="Created Date">@context.createdDate</MudTd>
+                 <MudTd DataLabel="Action">
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Edit" Color="Color.Primary" OnClick="@((e) => Edit(context))">Edit</MudButton>
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.AttachMoney" Color="Color.Primary" OnClick="@((e) => Grant(context))">Grant</MudButton>
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Secondary" OnClick="@((e) => Delete(context))">Delete</MudButton>
+                   </MudTd>
+
+            </RowTemplate>
+        </MudTable>
+    
+
+
+}
+
+
+@code {
+    private ItemDto[] _items;
+
+ async Task  Add( )
+    {    
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };      
+
+          var dialog = await DialogService.ShowAsync<BlazorClient.Pages.Catalog.AddDialog>("Add", closeOnEscapeKey);
+              var result = await dialog.Result;        
+
+             if (!result.Canceled)
+                 {            
+              await getItems();            
+        
+                }
+    }
+
+
+ async Task  Edit(ItemDto data )
+    {    
+    
+       var parameters = new DialogParameters { ["data"]=data };     
+
+
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };      
+
+          var dialog = await DialogService.ShowAsync<BlazorClient.Pages.Catalog.EditDialog>("Edit", parameters, closeOnEscapeKey);
+              var result = await dialog.Result;        
+
+             if (!result.Canceled)
+                 {            
+              await getItems();            
+        
+                }
+    }
+
+
+ async Task  Grant(ItemDto data )
+    {    
+    
+       var parameters = new DialogParameters { ["data"]=data };     
+
+
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };      
+
+          var dialog = await DialogService.ShowAsync<BlazorClient.Pages.Catalog.GrantDialog>("Grant", parameters, closeOnEscapeKey);
+              var result = await dialog.Result;        
+
+             if (!result.Canceled)
+                 {            
+              await getItems();            
+        
+                }
+    }
+
+ async Task  Delete(ItemDto data )
+    {    
+    
+       var parameters = new DialogParameters { ["data"]=data };     
+
+
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };      
+
+           var dialog = await DialogService.ShowAsync<BlazorClient.Pages.Catalog.DeleteDialog>("Delete", parameters, closeOnEscapeKey);
+            var result = await dialog.Result;        
+
+             if (!result.Canceled)
+                 {            
+              await getItems();            
+        
+                }
+
+    }
+
+
+ async Task getItems()
+    {
+        try
+        {
+            var client = ClientFactory.CreateClient("frontend2");
+          
+            _items = await client.GetFromJsonAsync<ItemDto[]>("http://host.docker.internal:5000/items");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+           await getItems();      
+    }
+
+
+
+}

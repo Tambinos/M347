@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trading-deployment
+  namespace: play
+spec:
+  selector:
+    matchLabels:
+      app: trading
+  template:
+    metadata:
+      labels:
+        app: trading        
+    spec:
+      serviceAccountName: trading-serviceaccount
+      containers:
+        - name: trading
+          image: git-registry.gibb.ch/thomas.staub/microservices/play.trading:1.0
+          env:
+            - name: MongoDbSettings__Host
+              value: mongo
+            - name: RabbitMQSettings__Host
+              value: rabbitmq
+            - name: SeqSettings__Host
+              value: seq            
+            - name: Logging__LogLevel__Default
+              value: information                 
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "150m"
+          ports:
+            - containerPort: 80
+          
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trading-service
+  namespace: play
+spec:
+  type: LoadBalancer
+  selector:
+    app: trading
+  ports:
+    - port: 5006
+      targetPort: 80 
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: trading-serviceaccount
+  namespace: play
+

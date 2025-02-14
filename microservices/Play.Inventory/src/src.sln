@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Play.Inventory.Contracts", "Play.Inventory.Contracts\Play.Inventory.Contracts.csproj", "{AF62CD4D-49EB-41F8-B6BF-D91E8F5DCE22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Play.Inventory.Service", "Play.Inventory.Service\Play.Inventory.Service.csproj", "{11FCEEB2-EE60-42B9-81C2-2125D4D06709}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF62CD4D-49EB-41F8-B6BF-D91E8F5DCE22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF62CD4D-49EB-41F8-B6BF-D91E8F5DCE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF62CD4D-49EB-41F8-B6BF-D91E8F5DCE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF62CD4D-49EB-41F8-B6BF-D91E8F5DCE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11FCEEB2-EE60-42B9-81C2-2125D4D06709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FCEEB2-EE60-42B9-81C2-2125D4D06709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FCEEB2-EE60-42B9-81C2-2125D4D06709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FCEEB2-EE60-42B9-81C2-2125D4D06709}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5758A7E8-FF35-4000-B0A5-CE32395F6E97}
+	EndGlobalSection
+EndGlobal
