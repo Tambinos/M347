@@ -207,6 +207,7 @@ version: '3'
 </details>
 <details>
   <summary>Portainer installation S.12</summary>
+  <h3>Portainer installation</h3>
   Portainer installations Befehl
 
   ```
@@ -222,4 +223,7 @@ version: '3'
   ![Alt text](portainer-logged-in.png "Portainer logged in")
 
   
+</details>
+<details>
+  <summary>Portainer app installation S.13</summary>
 </details>
