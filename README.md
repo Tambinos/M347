@@ -159,41 +159,52 @@ Dockerfile im angegebenen Verzeichnis.
   <summary>Docker compose für Todo-app-v2 S.11</summary>
   <h3>Docker compose für Todo-app-v2</h3>
   Wir erstellen ein neues file mit
-  `touch docker-compose.yml`
-  In dieses kommt nun unser docker-compose	
+  
   ```
-version: '3'
-services:
-  redis-master:
-    image: ghcr.io/tambinos/m347/redis-master:v2
-    container_name: redis-master
-    networks:
-      - redis-network
-    ports:
-      - "6379:6379"
+  touch docker-compose.yml
+  ```
+  
+  In dieses kommt nun unser docker-compose	
+  
+  ```
+  version: '3'
+    services:
+      redis-master:
+        image: ghcr.io/tambinos/m347/redis-master:v2
+        container_name: redis-master
+        networks:
+          - redis-network
+        ports:
+          - "6379:6379"
 
-  redis-slave:
-    image: ghcr.io/tambinos/m347/redis-slave:v2
-    container_name: redis-slave
-    networks:
-      - redis-network
-    depends_on:
-      - redis-master
-    ports:
-      - "6380:6379"
+      redis-slave:
+        image: ghcr.io/tambinos/m347/redis-slave:v2
+        container_name: redis-slave
+        networks:
+          - redis-network
+        depends_on:
+          - redis-master
+        ports:
+          - "6380:6379"
 
-  todo-app:
-    image: ghcr.io/tambinos/m347/todo-app:v2
-    container_name: todo-app
-    networks:
-      - redis-network
-    depends_on:
-      - redis-master
-    ports:
-      - "3000:3000"
+      todo-app:
+        image: ghcr.io/tambinos/m347/todo-app:v2
+        container_name: todo-app
+        networks:
+          - redis-network
+        depends_on:
+          - redis-master
+        ports:
+          - "3000:3000"
 
-networks:
-  redis-network:
-    driver: bridge
+    networks:
+      redis-network:
+        driver: bridge
+  ```
+
+  Dieses können wir jetzt mit ausführen
+
+  ```
+  docker compose up
   ```
 </details>
