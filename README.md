@@ -236,7 +236,7 @@ version: '3'
   ![Alt text](portainer-app-running.png "Portainer logged in")
 </details>
 <details>
-  <summary>Beispiel Shop installation S.13</summary>
+  <summary>Beispiel Shop installation S.14</summary>
   <h3>Beispiel Shop installation</h3>
 
   Repository clonen und .git ordner removen damit wir nicht ein git in einem git haben  
@@ -255,7 +255,7 @@ version: '3'
   Ansich sollte nun alles funktionieren jedoch war dies nicht der fall bei mir alles bis auf die inventory catalog und store wo folgender error auftritt
   ![Alt text](shop-error.png "shop error")
 
-  Prometheus, Jaeger, RabbitMQ und Grafana
+  Diese funktionieren sind jedoch auch nicht 100% funktiontüchtig da der shop selber nur halb funktioniert Prometheus, Jaeger, RabbitMQ und Grafana
   ![Alt text](rabbitmq.png "rabbitmq")
   ![Alt text](jaeger.png "jeager")
   ![Alt text](prometheus.png "prometheus")
