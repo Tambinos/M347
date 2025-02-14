@@ -252,11 +252,9 @@ version: '3'
   docker compose up
   ```
   ![Alt text](shop-running.png "shop running")
-  Ansich sollte nun alles funktionieren jedoch war dies nicht der fall bei mir alles bis auf die inventory catalog und store wo folgender error auftritt
-  ![Alt text](shop-error.png "shop error")
-
-  Diese funktionieren sind jedoch auch nicht 100% funktiontüchtig da der shop selber nur halb funktioniert Prometheus, Jaeger, RabbitMQ und Grafana
-  ![Alt text](rabbitmq.png "rabbitmq")
+  
+  Prometheus, Jaeger und Grafana
+  ![Alt text](grafana.png "rabbitmq")
   ![Alt text](jaeger.png "jeager")
   ![Alt text](prometheus.png "prometheus")
 
