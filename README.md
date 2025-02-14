@@ -226,4 +226,8 @@ version: '3'
 </details>
 <details>
   <summary>Portainer app installation S.13</summary>
+  Repository als stack hinzufügen
+  ![Alt text](add-repository-portainer.png "Portainer stack registery")
+  Und schon sollten die container runnen
+  ![Alt text](portainer-app-running.png "Portainer logged in")
 </details>
