@@ -245,11 +245,19 @@ version: '3'
   rm -rf microservices/.git
   ```
   
-  In die docker directory um das docker-compose zu starten
+  In die docker directory um das docker-compose zu starten und etc/hosts bearbeiten
   ```
+  nano /etc/hosts #folgende linie hinzufügen => 127.0.0.1       host.docker.internal
   cd microservices/Play.Infra/docker
   docker compose up
   ```
+  ![Alt text](shop-running.png "shop running")
+  Ansich sollte nun alles funktionieren jedoch war dies nicht der fall bei mir alles bis auf die inventory catalog und store wo folgender error auftritt
+  ![Alt text](shop-error.png "shop error")
 
-  
+  Prometheus, Jaeger, RabbitMQ und Grafana
+  ![Alt text](rabbitmq.png "rabbitmq")
+  ![Alt text](jaeger.png "jeager")
+  ![Alt text](prometheus.png "prometheus")
+
 </details>
