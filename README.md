@@ -235,3 +235,21 @@ version: '3'
   
   ![Alt text](portainer-app-running.png "Portainer logged in")
 </details>
+<details>
+  <summary>Beispiel Shop installation S.13</summary>
+  <h3>Beispiel Shop installation</h3>
+
+  Repository clonen und .git ordner removen damit wir nicht ein git in einem git haben  
+  ```
+  git clone git@git.gibb.ch:thomas.staub/microservices.git
+  rm -rf microservices/.git
+  ```
+  
+  In die docker directory um das docker-compose zu starten
+  ```
+  cd microservices/Play.Infra/docker
+  docker compose up
+  ```
+
+  
+</details>
