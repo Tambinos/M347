@@ -312,15 +312,25 @@ Kubernetes bietet eine **Self-Healing-Funktion**, die sicherstellt, dass fehlerh
 </details>
 
 <details>
-<summary>Scale Up S.18</summary>
+<summary>Scale Up & Scale Down S.18</summary>
 <h3>Scale Up</h3>
 
 ```bash
 # Scale Up
-kubectl scale deployment school-system --replicas=5
+kubectl scale deployment todo-app --replicas=5
 
 # Scale Down
 kubectl scale deployment school-system --replicas=2
 ```
 Scale Up bedeutet, dass zusätzliche Instanzen (Pods) der Anwendung erstellt werden, um eine höhere Last zu bewältigen. Kubernetes verteilt die neuen Pods automatisch auf verfügbare Nodes, um die Performance zu verbessern. Dies geschieht dynamisch, sodass bei einem Anstieg der Last automatisch zusätzliche Ressourcen bereitgestellt werden können. Durch einfaches Anpassen der Replikas kann Kubernetes horizontal skalieren, um den Anforderungen gerecht zu werden. Diese Methode wird oft bei stark frequentierten Anwendungen genutzt, um eine gleichbleibende Nutzererfahrung zu gewährleisten.
 </details>
+<details>
+<summary>Blue-Green Deployment S.19</summary>
+<h3>Blue-Green Deployment</h3>
+Blue-Green Deployment ist eine Strategie für den Deployment-Prozess von Software, bei der zwei identische Produktionsumgebungen parallel betrieben werden: eine "Blue" Umgebung (die aktuelle Live-Umgebung) und eine "Green" Umgebung (die neue Version, die aktualisiert werden soll). 
+Bei einem Blue-Green Deployment wird die neue Version der Anwendung in der Green-Umgebung bereitgestellt und vollständig getestet, während die Blue-Umgebung weiterhin in Produktion bleibt und den laufenden Betrieb unterstützt.
+Sobald die Green-Umgebung erfolgreich getestet wurde und bereit ist, wird der Verkehr von der Blue- zur Green-Umgebung umgeschaltet, indem die Router oder Load Balancer einfach neu konfiguriert werden.
+Diese Methode ermöglicht ein nahezu nahtloses Rollback auf die vorherige Version, falls Probleme auftreten, da die Blue-Umgebung intakt bleibt und sofort wieder aktiviert werden kann.
+Blue-Green Deployment reduziert das Risiko von Ausfallzeiten und Störungen für Endbenutzer erheblich, indem es eine geprüfte und stabile Umgebung während des Update-Prozesses aufrechterhält.
+</details>
+
