@@ -259,3 +259,95 @@ version: '3'
   ![Alt text](prometheus.png "prometheus")
 
 </details>
+<details>
+<summary>Raft-Konsens-Algorithmus S.15</summary>
+<h3>Raft-Konsens-Algorithmus</h3>
+
+Der **Raft-Konsens-Algorithmus** ist ein Protokoll zur Konsensbildung in verteilten Systemen. Es stellt sicher, dass alle Server eines Clusters denselben Zustand haben, indem ein **Leader** gewählt wird, der Schreiboperationen koordiniert. Die verbleibenden **Follower** replizieren den Zustand und akzeptieren Änderungen nur vom aktuellen Leader. Sollte dieser ausfallen, wird ein neuer Leader durch eine Abstimmung gewählt. Um eine **Split-Brain-Situation** zu vermeiden, sollte ein Raft-Cluster immer eine **ungerade Anzahl von Servern** haben, sodass Abstimmungen immer eine klare Mehrheit ergeben.
+</details>
+
+<details>
+<summary>Betrieb der App in Kubernetes S.16</summary>
+<h3>Betrieb der App in Kubernetes</h3>
+Deployment YAML für Kubernetes
+  
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: school-system
+  labels:
+    app: school-system
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: school-system
+  template:
+    metadata:
+      labels:
+        app: school-system
+    spec:
+      containers:
+      - name: school-system
+        image: ghcr.io/tambinos/nevio-digennaro-m347-projekt/school-system:latest
+        ports:
+        - containerPort: 80
+```
+Kubernetes Service YAML (NodePort)
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: school-system-service
+spec:
+  type: NodePort
+  selector:
+    app: school-system
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+```
+
+Deployment und Service anwenden (kubectl apply)
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+Überprüfen des Status
+
+```bash
+kubectl get pods
+kubectl get services
+kubectl describe deployment school-system
+```
+
+Diese Befehle zeigen dir die laufenden Pods, den Status des Services und Details zum Deployment an. So kannst du prüfen, ob alles richtig läuft.
+
+Dieses Deployment definiert drei Pods, welche deine school-system-App als Container ausführen. Der Container wird aus deinem Image von GHCR erstellt und nutzt Port 80.
+</details>
+
+<details>
+<summary>Self-Healing in Kubernetes S.17</summary>
+<h3>Self-Healing in Kubernetes</h3>
+
+Kubernetes bietet eine **Self-Healing-Funktion**, die sicherstellt, dass fehlerhafte oder abgestürzte Pods automatisch neu gestartet werden. Dies geschieht durch **Liveness-Probes**, die den Zustand der Anwendung kontinuierlich überprüfen. Falls ein Pod nicht mehr reagiert, beendet Kubernetes diesen und startet einen neuen Pod. Dies minimiert Ausfallzeiten und sorgt für eine **hohe Verfügbarkeit** der Anwendung. Durch Self-Healing müssen Administratoren nicht manuell eingreifen, wenn ein Problem auftritt.
+</details>
+
+<details>
+<summary>Scale Up S.18</summary>
+<h3>Scale Up</h3>
+
+```bash
+# Scale Up
+kubectl scale deployment school-system --replicas=5
+
+# Scale Down
+kubectl scale deployment school-system --replicas=2
+```
+Scale Up bedeutet, dass zusätzliche Instanzen (Pods) der Anwendung erstellt werden, um eine höhere Last zu bewältigen. Kubernetes verteilt die neuen Pods automatisch auf verfügbare Nodes, um die Performance zu verbessern. Dies geschieht dynamisch, sodass bei einem Anstieg der Last automatisch zusätzliche Ressourcen bereitgestellt werden können. Durch einfaches Anpassen der Replikas kann Kubernetes horizontal skalieren, um den Anforderungen gerecht zu werden. Diese Methode wird oft bei stark frequentierten Anwendungen genutzt, um eine gleichbleibende Nutzererfahrung zu gewährleisten.
+</details>
