@@ -269,62 +269,33 @@ Der **Raft-Konsens-Algorithmus** ist ein Protokoll zur Konsensbildung in verteil
 <details>
 <summary>Betrieb der App in Kubernetes S.16</summary>
 <h3>Betrieb der App in Kubernetes</h3>
-Deployment YAML für Kubernetes
-  
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: school-system
-  labels:
-    app: school-system
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: school-system
-  template:
-    metadata:
-      labels:
-        app: school-system
-    spec:
-      containers:
-      - name: school-system
-        image: ghcr.io/tambinos/nevio-digennaro-m347-projekt/school-system:latest
-        ports:
-        - containerPort: 80
-```
-Kubernetes Service YAML (NodePort)
+Deployment App mit Kubernetes
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: school-system-service
-spec:
-  type: NodePort
-  selector:
-    app: school-system
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 30080
+Version 1
+``` 
+kubectl create -f redis-master-controller.yaml -n to-do-app
+kubectl get pods -n to-do-app
+kubectl create -f redis-master-service.yaml -n to-do-app
+kubectl get service -n to-do-app
+kubectl create -f redis-slave-controller.yaml -n to-do-app 
+kubectl get rc -n to-do-app
+kubectl get pods -n to-do-app
+kubectl create -f redis-slave-service.yaml -n to-do-app 
+kubectl get service -n to-do-app
+kubectl create -f redis-slave-controller.yaml -n to-do-app 
+kubectl create -f todo-app-deploy.yaml -n to-do-app
+kubectl create -f todo-app-service-deploy.yaml -n to-do-app 
+kubectl get deployments -n to-do-app
+kubectl get pods -l app=todo-app -n to-do-app
+kubectl get rc -n to-do-app
+kubectl get po -n to-do-app
+kubectl get svc -n to-do-app
+kubectl get endpoints -n to-do-app
+kubectl get services -n to-do-app
 ```
+![Alt text](todo-app-service-v1.png "app version 1 service running")
 
-Deployment und Service anwenden (kubectl apply)
 
-```bash
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-```
-Überprüfen des Status
-
-```bash
-kubectl get pods
-kubectl get services
-kubectl describe deployment school-system
-```
 
 Diese Befehle zeigen dir die laufenden Pods, den Status des Services und Details zum Deployment an. So kannst du prüfen, ob alles richtig läuft.
 
