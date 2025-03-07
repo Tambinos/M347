@@ -295,11 +295,13 @@ kubectl get services -n to-do-app
 ```
 ![Alt text](todo-app-service-v1.png "app version 1 service running")
 
+Version 2 
+```
+kubectl apply -f todo-app-deploy-v2.yaml -n to-do-app
+```
+![Alt text](todo-app-service-v2.png "app version 2 service running")
+Da alles andere schon läuft reicht dieser Befehl
 
-
-Diese Befehle zeigen dir die laufenden Pods, den Status des Services und Details zum Deployment an. So kannst du prüfen, ob alles richtig läuft.
-
-Dieses Deployment definiert drei Pods, welche deine school-system-App als Container ausführen. Der Container wird aus deinem Image von GHCR erstellt und nutzt Port 80.
 </details>
 
 <details>
