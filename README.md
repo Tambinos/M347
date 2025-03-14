@@ -389,7 +389,7 @@ Portainer
 </details>
 
 <details>
-<summary>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten S.23</summary>
+<summary>Erklärung warum sie bei "Ingress beim zugriff auf 127.0.0.1 ein Error 404 erhalten S.23</summary>
 <h3>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten</h3>
 
 **Gründe für den 404-Fehler**:
