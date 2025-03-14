@@ -387,7 +387,7 @@ Blue-Green Deployment reduziert das Risiko von Ausfallzeiten und Störungen für
 </details>
 
 <details>
-<summary>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten</summary>
+<summary>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten S.23</summary>
 <h3>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten</h3>
 
 **Gründe für den 404-Fehler**:
@@ -405,7 +405,7 @@ Blue-Green Deployment reduziert das Risiko von Ausfallzeiten und Störungen für
 </details>
 
 <details>
-<summary>PrintScreen wie Portainer auf Kubernetes Installiert ist S.23</summary>
+<summary>PrintScreen wie Portainer auf Kubernetes Installiert ist S.24</summary>
 <h3>PrintScreen wie Portainer auf Kubernetes Installiert ist</h3>
 
 (Hier würde ein Screenshot eingefügt werden, der die Portainer-Installation auf Kubernetes zeigt. Da ich kein Bild direkt anzeigen kann, beschreibe ich, was darauf zu sehen wäre)
