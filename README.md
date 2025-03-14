@@ -333,4 +333,87 @@ Sobald die Green-Umgebung erfolgreich getestet wurde und bereit ist, wird der Ve
 Diese Methode ermöglicht ein nahezu nahtloses Rollback auf die vorherige Version, falls Probleme auftreten, da die Blue-Umgebung intakt bleibt und sofort wieder aktiviert werden kann.
 Blue-Green Deployment reduziert das Risiko von Ausfallzeiten und Störungen für Endbenutzer erheblich, indem es eine geprüfte und stabile Umgebung während des Update-Prozesses aufrechterhält.
 </details>
+<details>
+<summary>Eintrag zu Cluster IP und Node IP S.20</summary>
+<h3>Eintrag zu Cluster IP und Node IP</h3>
+
+**Cluster IP**:
+- **Definition**: Eine interne virtuelle IP-Adresse, die von Kubernetes für Services bereitgestellt wird. Sie ist nur innerhalb des Clusters erreichbar.
+- **Funktion**: Dient als Load Balancer für die Pods eines Services.
+- **Lebenszyklus**: Wird beim Erstellen eines Services zugewiesen und beim Löschen des Services freigegeben.
+
+**Node IP**:
+- **Definition**: Die IP-Adresse eines physischen oder virtuellen Knotens im Kubernetes-Cluster.
+- **Funktion**: Ermöglicht den Zugriff auf Services außerhalb des Clusters über den NodePort.
+- **NodePort**: Ein Port, der auf allen Knoten geöffnet wird und den Service extern verfügbar macht.
+
+**Unterschiede**:
+- Cluster IP ist intern und Node IP ist extern erreichbar.
+- Cluster IP dient als interner Load Balancer, Node IP ermöglicht externen Zugriff.
+
+</details>
+
+<details>
+<summary>Eintrag zu Load Balancer S.21</summary>
+<h3>Eintrag zu Load Balancer</h3>
+
+**Definition**: Ein Load Balancer verteilt den eingehenden Datenverkehr auf mehrere Pods, um die Verfügbarkeit und Skalierbarkeit zu erhöhen.
+
+**Arten von Load Balancern**:
+- **Service Load Balancer**: Von Kubernetes verwaltet, für Services vom Typ LoadBalancer.
+- **Ingress Controller**: Software-Load-Balancer, der den Traffic basierend auf Regeln an Services weiterleitet.
+- **Externe Load Balancer**: Hardware- oder Software-Load-Balancer außerhalb des Clusters.
+
+**Funktionsweise**:
+- Verteilung des Traffics durch Algorithmen wie Round Robin, Least Connections oder IP-Hash.
+
+**Vorteile**:
+- Erhöhte Verfügbarkeit und verbesserte Skalierbarkeit.
+- Bessere Leistung durch Traffic-Verteilung auf weniger ausgelastete Pods.
+
+</details>
+
+<details>
+<summary>PrintScreen Wie Sie auf die App zugreiffen. Siehe Kap. Ingress S.22</summary>
+<h3>PrintScreen Wie Sie auf die App zugreiffen. Siehe Kap. Ingress</h3>
+
+(Hier würde ein Screenshot eingefügt werden, der den Zugriff auf die Anwendung über Ingress zeigt. Da ich kein Bild direkt anzeigen kann, beschreibe ich, was darauf zu sehen wäre)
+
+**Inhalt des Screenshots**:
+- Browser-Adresse: Eine URL, die auf den Hostnamen der Anwendung verweist (z.B. `meine-app.example.com`).
+- Ingress-Regeln: Ausschnitt der Ingress-Konfiguration, die Hostnamen und Pfade den Services zuordnet.
+- Anwendungsoberfläche: Die Benutzeroberfläche der Anwendung, die über den Ingress-Controller zugänglich ist.
+
+</details>
+
+<details>
+<summary>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten</summary>
+<h3>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten</h3>
+
+**Gründe für den 404-Fehler**:
+- **Hostnamen-basierte Weiterleitung**: Ingress verwendet Hostnamen zur Weiterleitung, nicht `127.0.0.1`.
+- **Standard-Backend**: Fehlen eines Standard-Backends oder dessen Fehlfunktion.
+- **Ingress-Konfiguration**: Fehlerhafte oder fehlende Regeln.
+- **DNS-Auflösung**: Probleme bei der Auflösung des Hostnamens zur IP-Adresse des Ingress-Controllers.
+
+**Lösungen**:
+- Hostnamen anstelle von `127.0.0.1` verwenden.
+- Ingress-Regeln überprüfen und korrigieren.
+- Standard-Backend konfigurieren.
+- DNS-Probleme beheben.
+
+</details>
+
+<details>
+<summary>PrintScreen wie Portainer auf Kubernetes Installiert ist S.23</summary>
+<h3>PrintScreen wie Portainer auf Kubernetes Installiert ist</h3>
+
+(Hier würde ein Screenshot eingefügt werden, der die Portainer-Installation auf Kubernetes zeigt. Da ich kein Bild direkt anzeigen kann, beschreibe ich, was darauf zu sehen wäre)
+
+**Inhalt des Screenshots**:
+- Befehle: Die Befehle zur Installation von Portainer auf Kubernetes via `kubectl apply`.
+- Portainer-Dashboard: Die Benutzeroberfläche von Portainer, die Kubernetes-Ressourcen verwaltet.
+- Bereitgestellte Ressourcen: Anzeigen der Portainer-Pods, Services und Deployments im Kubernetes-Cluster.
+
+</details>
 
