@@ -374,15 +374,17 @@ Blue-Green Deployment reduziert das Risiko von Ausfallzeiten und Störungen für
 </details>
 
 <details>
-<summary>PrintScreen Wie Sie auf die App zugreiffen. Siehe Kap. Ingress S.22</summary>
-<h3>PrintScreen Wie Sie auf die App zugreiffen. Siehe Kap. Ingress</h3>
+<summary>App Zugriff Ingress S.22</summary>
+<h3>App Zugriff Ingress</h3>
+In Lens sah man meine Applikation laufen alles ist gelaufen jedoch war die App
+einfach nicht durch my-app.com erreichbar
+  
+![Alt text](to-do-app-cluster.png "app version 2 service running")
 
-(Hier würde ein Screenshot eingefügt werden, der den Zugriff auf die Anwendung über Ingress zeigt. Da ich kein Bild direkt anzeigen kann, beschreibe ich, was darauf zu sehen wäre)
+Portainer
 
-**Inhalt des Screenshots**:
-- Browser-Adresse: Eine URL, die auf den Hostnamen der Anwendung verweist (z.B. `meine-app.example.com`).
-- Ingress-Regeln: Ausschnitt der Ingress-Konfiguration, die Hostnamen und Pfade den Services zuordnet.
-- Anwendungsoberfläche: Die Benutzeroberfläche der Anwendung, die über den Ingress-Controller zugänglich ist.
+![Alt text](portainer-running.png "portainer running")
+
 
 </details>
 
