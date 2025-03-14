@@ -381,16 +381,14 @@ einfach nicht durch my-app.com erreichbar
   
 ![Alt text](to-do-app-cluster.png "app version 2 service running")
 
-Portainer
 
-![Alt text](portainer-running.png "portainer running")
 
 
 </details>
 
 <details>
-<summary>Erklärung warum sie bei "Ingress beim zugriff auf 127.0.0.1 ein Error 404 erhalten S.23</summary>
-<h3>Erklärung warum sie bei "Ungress beim zugriff auf 127.0.0.1 ein Error 404 erhalten</h3>
+<summary>Warum Ingress beim zugriff auf 127.0.0.1 ein Error 404 wirft S.23</summary>
+<h3>Warum Ingress beim zugriff auf 127.0.0.1 ein Error 404 wirft</h3>
 
 **Gründe für den 404-Fehler**:
 - **Hostnamen-basierte Weiterleitung**: Ingress verwendet Hostnamen zur Weiterleitung, nicht `127.0.0.1`.
@@ -409,13 +407,55 @@ Portainer
 <details>
 <summary>PrintScreen wie Portainer auf Kubernetes Installiert ist S.24</summary>
 <h3>PrintScreen wie Portainer auf Kubernetes Installiert ist</h3>
+Das ist das Portainer.yml welches ich verwendet habe
+  
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portainer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portainer
+  template:
+    metadata:
+      labels:
+        app: portainer
+    spec:
+      containers:
+      - name: portainer
+        image: portainer/portainer-ce:latest
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - name: portainer-data
+          mountPath: /data
+        - name: docker-sock
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: portainer-data
+        emptyDir: {}
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
+```
 
-(Hier würde ein Screenshot eingefügt werden, der die Portainer-Installation auf Kubernetes zeigt. Da ich kein Bild direkt anzeigen kann, beschreibe ich, was darauf zu sehen wäre)
+Ich habe es so gemacht da es X vorladen im internet gibt und es somit am effizientisten ist
+da ich ihn dann einfach mit
 
-**Inhalt des Screenshots**:
-- Befehle: Die Befehle zur Installation von Portainer auf Kubernetes via `kubectl apply`.
-- Portainer-Dashboard: Die Benutzeroberfläche von Portainer, die Kubernetes-Ressourcen verwaltet.
-- Bereitgestellte Ressourcen: Anzeigen der Portainer-Pods, Services und Deployments im Kubernetes-Cluster.
+```
+microk8s kubectl apply -f portainer.yaml
+microk8s kubectl port-forward deployment/portainer 9000:9000
+```
+Portainer
+![Alt text](portainer-running.png "portainer running")
+
+
+Portainer mit Wordpress 
+Wordpress ist hier auf not ready da es Ewigkeiten zum starten braucht
+![Alt text](portainer-wordpress.png "portainer running")
 
 </details>
 
