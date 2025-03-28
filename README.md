@@ -491,9 +491,22 @@ Dannach habe ich dieses Deployment applied mit
 kubectl apply -f deployment.yml
 ```
 
-Nun muss man nur noch den Port Forwarden
+Nun muss man nur noch den Service starten
 ```
-kubectl port-forward deployment/school-system 8080:80
+apiVersion: v1
+kind: Service
+metadata:
+  name: school-system-service
+spec:
+  type: NodePort
+  selector:
+    app: school-system
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+kubectl apply -f service.yml
 ```
 
 Dannach sollte die applikation unter localhost:8080 erreichbar sein der Port kann jedoch belibig geändert werden in dem man im Port forward befehl der erste der beiden Ports verändert.
