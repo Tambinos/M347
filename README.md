@@ -460,42 +460,40 @@ Wordpress ist hier auf not ready da es Ewigkeiten zum starten braucht
 </details>
 
 <details>
-<summary>Eigene App in Kubernetes S.24</summary>
-<h3>Eigene App in Kubernetes</h3>
+<summary>Todo App in Podman S.25</summary>
+<h3>Todo App in Podman</h3>
+In der to-do-appv1 directory runnen wir diesen Befehl  
+```
+podman-compose up -d
+```
+  
+Da dies ein Error warf da er kein registery hat wo er die Redis images pullen kann.
+Weswegen wir in diesem file.
 
-Das ist das Deployment.yml welches ich geschrieben habe
 ```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: school-system
-  labels:
-    app: school-system
-spec:
-  replicas: 3 # Anzahl Pods die offen sein sollen
-  selector:
-    matchLabels:
-      app: school-system
-  template:
-    metadata:
-      labels:
-        app: school-system
-    spec:
-      containers:
-      - name: school-system
-        image: ghcr.io/tambinos/nevio-digennaro-m347-projekt/school-system:latest # Pullt das Aktuellste Image welchem im github repo ist
-        ports:
-        - containerPort: 80 # Definiert den Port in welchem innerhalb des Pods die Applikation laufen soll
-```
-Dannach habe ich dieses Deployment applied mit
-```
-kubectl apply -f deployment.yml
+sudo nano /etc/containers/registries.conf
 ```
 
-Nun muss man nur noch den Port Forwarden
+Diese linie hinzufügen
 ```
-kubectl port-forward deployment/school-system 8080:80
+[registries.search]
+registries = ["docker.io", "quay.io", "registry.fedoraproject.org"]
 ```
 
-Dannach sollte die applikation unter localhost:8080 erreichbar sein der Port kann jedoch belibig geändert werden in dem man im Port forward befehl der erste der beiden Ports verändert.
+Dannach den Service neustarten
+
+```
+systemctl --user restart podman
+```
+Dannach rerunnen und schon sollte es funktionieren.
+```
+podman-compose up -d
+```
+Die laufenden Applikation
+![Alt text](podman-running.png "portainer running")
+
+Die laufenden Pods im UI
+![Alt text](podman-running-pods.png "portainer running")
+
+
 </details>
